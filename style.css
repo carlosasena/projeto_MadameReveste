@@ -9,9 +9,19 @@
     box-sizing: border-box;
 }
 
+/* Remove outline azul ao clicar */
+*:focus {
+    outline: none;
+}
+
+img {
+    border: none;
+    outline: none;
+}
+
 @font-face {
-    font-family: 'montserrat-alternates';
-    src: url('./fonts/montserrat-alternates/MontserratAlternates-SemiBold.ttf') format(truetype);
+    font-family: 'great-vibes';
+    src: url('./fonts/great-vibes/GreatVibes-Regular.ttf') format('truetype');
     font-style: normal;
     font-weight: normal;
     font-display: swap;
@@ -35,43 +45,63 @@
     --cor2: #158f6f;
     --cor3: #788c5c;
     --cor4: #45672f;
-    --titulo: 'montserrat-alternates', serif;
+    --titulo: 'great-vibes', serif;
     --texto: 'Montserrat', serif;
-    
- }
+}
 
- body {
+body {
     background: var(--cor0);
-    font-family:var(--texto);
+    font-family: var(--texto);
     color: var(--cor4);
     font-size: 1rem;
     line-height: 1.6;
-    padding: 20px;
- }
+    margin: 0;
+    padding: 0;
+}
 
- h1, h2, h3 {
+h1, h2, h3 {
     font-family: var(--titulo);
     color: var(--cor1);
     margin: 1.5rem 0 1rem;
- }
+}
 
- h1 {
+h1 {
     font-size: 2rem;
- }
+}
 
- h2 {
+h2 {
     font-size: 1.5rem;
- }
+}
 
- h3 {
+h3 {
     font-size: 1.3rem;
- }
+}
 
 /* ============================================================
    3. HEADER
    ============================================================ */
+header {
+    width: 100%;
+    margin: 0;
+    padding: 0;
+}
+
 header img {
     width: 300px;
+    display: block;
+    margin: 0 auto;
+}
+
+.header-img {
+    text-align: center;
+    width: 100%;
+    padding: 30px;
+    background: radial-gradient(circle, 
+        #ffc0cb 0%, /* rosa claro no centro */ 
+        #ff69b4 40%, /* rosa médio */ 
+        #ff1493 70%, /* rosa forte */ 
+        #c71585 100% /* magenta escuro nas bordas */
+    );
 }
 
 /* ============================================================
@@ -81,10 +111,184 @@ header img {
 /* ============================================================
    5. LAYOUT PRINCIPAL (Main)
    ============================================================ */
+/* Layout Geral do Site */
+.main-layout {
+    display: flex;
+    gap: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+    align-items: flex-start;
+}
+
+/* O conteúdo principal cresce e ocupa o resto */
+main {
+    flex: 1;
+}
+
+main h1, main h2 {
+    margin-left: 20px;
+}
+
+main p {
+    margin-left: 40px;
+    margin-bottom: 1rem;
+}
+
+main ul {
+    margin-left: 60px;
+    margin-bottom: 1rem;
+}
+
+main blockquote {
+    margin: 20px 40px;
+    padding: 15px;
+    background: rgba(155, 69, 88, 0.1);
+    border-left: 4px solid var(--cor1);
+    font-style: italic;
+}
 
 /* ============================================================
-   6. SEÇÕES DE CONTEÚDO
+   6. VITRINE (aside)
    ============================================================ */
+/* Aside fixo à direita com mesma altura do main */
+.vitrine-aside {
+    width: 380px;
+    position: sticky;
+    top: 20px;
+    align-self: flex-start;
+    background: white;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    display: flex;
+    flex-direction: column;
+    max-height: calc(100vh - 40px);
+}
+
+.titulo-vitrine {
+    margin: 0 0 20px 0;
+    text-align: center;
+    flex-shrink: 0;
+}
+
+.carousel-container {
+    position: relative;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    min-height: 0;
+}
+
+.carousel-view {
+    width: 100%;
+    overflow-y: auto;
+    overflow-x: hidden;
+    border-radius: 12px;
+    flex: 1;
+    /* Scrollbar personalizada */
+    scrollbar-width: thin;
+    scrollbar-color: var(--cor1) #f1f1f1;
+}
+
+/* Scrollbar para Webkit (Chrome, Safari) */
+.carousel-view::-webkit-scrollbar {
+    width: 8px;
+}
+
+.carousel-view::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 10px;
+}
+
+.carousel-view::-webkit-scrollbar-thumb {
+    background: var(--cor1);
+    border-radius: 10px;
+}
+
+.carousel-view::-webkit-scrollbar-thumb:hover {
+    background: var(--cor4);
+}
+
+.carousel-track {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    padding: 5px;
+}
+
+.gallery-img {
+    width: 100%;
+    flex-shrink: 0;
+    aspect-ratio: 3 / 4;
+    object-fit: cover;
+    cursor: zoom-in;
+    border-radius: 8px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.gallery-img:hover {
+    transform: scale(1.02);
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+}
+
+.nav-btn {
+    display: none; /* Removido pois agora é scroll */
+}
+
+.counter {
+    text-align: center;
+    font-size: 0.9rem;
+    color: #888;
+    margin-top: 15px;
+    padding-top: 15px;
+    border-top: 1px solid #eee;
+    flex-shrink: 0;
+}
+
+/* ============================================================
+   LIGHTBOX
+   ============================================================ */
+.lightbox {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.95);
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+
+.lightbox-content {
+    max-width: 90%;
+    max-height: 90%;
+    object-fit: contain;
+    border: none;
+    outline: none;
+    box-shadow: 0 0 30px rgba(0, 0, 0, 0.5);
+}
+
+.close-lightbox {
+    position: absolute;
+    top: 20px;
+    right: 40px;
+    font-size: 40px;
+    color: white;
+    cursor: pointer;
+    font-weight: bold;
+    z-index: 1001;
+    user-select: none;
+    transition: all 0.3s ease;
+}
+
+.close-lightbox:hover {
+    color: var(--cor1);
+    transform: scale(1.1);
+}
 
 /* ============================================================
    7. SIDEBAR - EQUIPAMENTOS
@@ -109,4 +313,43 @@ header img {
 /* ============================================================
    12. RESPONSIVIDADE
    ============================================================ */
+/* No Celular: coloca a vitrine abaixo do conteúdo */
+@media (max-width: 768px) {
+    .main-layout {
+        flex-direction: column;
+    }
+    
+    .vitrine-aside {
+        width: 100%;
+        position: static;
+        max-height: 600px;
+    }
 
+    main h1, main h2 {
+        margin-left: 10px;
+    }
+
+    main p {
+        margin-left: 20px;
+    }
+
+    main ul {
+        margin-left: 30px;
+    }
+
+    main blockquote {
+        margin: 15px 20px;
+    }
+
+    h1 {
+        font-size: 1.5rem;
+    }
+
+    h2 {
+        font-size: 1.3rem;
+    }
+
+    header img {
+        width: 200px;
+    }
+}
