@@ -105,10 +105,6 @@ header img {
 }
 
 /* ============================================================
-   4. NAVEGAÇÃO
-   ============================================================ */
-
-/* ============================================================
    5. LAYOUT PRINCIPAL (Main)
    ============================================================ */
 /* Layout Geral do Site */
@@ -126,7 +122,7 @@ main {
     flex: 1;
 }
 
-main h1, main h2 {
+main h1, main h2, main h3 {
     margin-left: 20px;
 }
 
@@ -146,6 +142,23 @@ main blockquote {
     background: rgba(155, 69, 88, 0.1);
     border-left: 4px solid var(--cor1);
     font-style: italic;
+}
+
+/* Destaque elegante para palavras-chave */
+main strong {
+    color: var(--cor1);              /* Rosa sofisticado */
+    font-weight: 600;
+}
+
+/* Destaque especial dentro de blockquote */
+main blockquote strong {
+    font-size: 1.1rem;
+    letter-spacing: 0.5px;
+}
+
+/* Suavidade visual */
+main p strong {
+    white-space: nowrap;
 }
 
 /* ============================================================
@@ -291,24 +304,132 @@ main blockquote {
 }
 
 /* ============================================================
-   7. SIDEBAR - EQUIPAMENTOS
+   11. FOOTER - Madame ReVeste
    ============================================================ */
+footer {
+    background-color: #c71585; /* margenta escuro do projeto */
+    color: var(--cor0); /* Bege claro */
+    padding: 40px 20px 20px;
+    margin-top: 40px;
+}
 
-/* ============================================================
-   8. SIDEBAR - MOSAICO (página Empresa)
-   ============================================================ */
+.footer-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 30px;
+}
 
-/* ============================================================
-   9. SLIDER FADE (página Serviços)
-   ============================================================ */
+.footer-section h3 {
+    color: var(--cor0); 
+    font-family: var(--titulo); /* great-vibes */
+    font-size: 1.8rem;
+    margin-bottom: 15px;
+    border-bottom: 1px solid rgba(239, 238, 229, 0.2);
+    display: inline-block;
+}
 
-/* ============================================================
-   10. PÁGINA CONTATO
-   ============================================================ */
+.footer-section p {
+    font-size: 0.9rem;
+    margin-bottom: 8px;
+    opacity: 0.9;
+}
 
-/* ============================================================
-   11. FOOTER
-   ============================================================ */
+.social-links {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.social-links a {
+    color: var(--cor0);
+    text-decoration: none;
+    font-size: 0.9rem;
+    transition: color 0.3s ease;
+}
+
+.social-links a:hover {
+    color: var(--cor1); /* Rosa destaque no hover */
+}
+
+.footer-bottom {
+    text-align: center;
+    margin-top: 40px;
+    padding-top: 20px;
+    border-top: 1px solid rgba(239, 238, 229, 0.1);
+    font-size: 0.8rem;
+    opacity: 0.7;
+}
+
+.footer-link {
+    color: var(--cor0); /* Usa o bege claro do seu projeto */
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.footer-link:hover {
+    color: var(--cor1); /* Muda para o rosa ao passar o mouse */
+    text-decoration: underline;
+}
+
+/* Estilização do ícone proporcional */
+.icon-social {
+    width: 1.2em;      /* Altura proporcional ao texto (um pouco maior que a letra) */
+    height: 1.2em;     /* Mantém a proporção quadrada */
+    vertical-align: middle; /* Alinha o ícone com o meio do texto */
+    margin-right: 8px; /* Espaço entre a imagem e a palavra WhatsApp */
+    object-fit: contain;
+}
+
+/* Ajuste no link para garantir o alinhamento flexível */
+.social-links a {
+    display: flex;
+    align-items: center;
+    color: var(--cor0);
+    text-decoration: none;
+    margin-bottom: 5px;
+}
+
+.whatsapp-link, .github-link {
+    display: inline-flex; /* Faz o link se comportar como linha, mas aceita alinhamento */
+    align-items: center;  /* Alinha verticalmente imagem e texto */
+    text-decoration: none;
+    color: var(--cor0);    /* Cor bege que você usa no footer */
+    gap: 2px;              /* Espaço entre a imagem e o texto */
+}
+
+/* Estilo para os links do desenvolvedor (GitHub e WhatsApp) */
+.whatsapp-link, .github-link {
+    display: inline-flex;
+    align-items: center;
+    text-decoration: none;
+    color: var(--cor0); /* Cor bege definida no seu :root */
+    gap: 8px;
+    margin-top: 5px;
+    transition: color 0.3s ease;
+}
+
+.whatsapp-link:hover, .github-link:hover {
+    color: var(--cor1); /* Rosa destaque no hover */
+}
+
+.icon-social {
+    width: 2em;  /* Tamanho proporcional à fonte do parágrafo */
+    height: 2em;
+    object-fit: contain;
+}
+
+/* Ajuste Responsivo */
+@media (max-width: 768px) {
+    .footer-container {
+        text-align: center;
+    }
+    
+    .footer-section h3 {
+        display: block;
+    }
+}
 
 /* ============================================================
    12. RESPONSIVIDADE
